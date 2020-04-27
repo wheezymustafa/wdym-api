@@ -1,7 +1,6 @@
 import cookieParser from 'cookie-parser';
 import morgan from 'morgan';
 import helmet from 'helmet';
-
 import express, { Request, Response, NextFunction } from 'express';
 import { BAD_REQUEST } from 'http-status-codes';
 import 'express-async-errors';
@@ -10,7 +9,7 @@ import 'express-async-errors';
 import logger from '@shared/Logger';
 
 import {init as dbConnect} from './services/DbClient'
-import BaseRouter from './routes/GameAssetsRoutes';
+import BaseRouter from './routes/GameRoutes';
 
 import * as cacheClient from './services/CacheClient'
 const app = express();
@@ -32,7 +31,6 @@ cacheClient.initCache(cacheUrl)
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(cookieParser());
-
 // Show routes called in console during development
 if (process.env.NODE_ENV === 'development') {
     app.use(morgan('dev'));
@@ -55,10 +53,6 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
         error: err.message,
     });
 });
-
-
-
-console.log(BaseRouter.stack)
 
 /************************************************************************************
  *                              Serve front-end content
