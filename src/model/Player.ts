@@ -1,6 +1,6 @@
 import AnswerCard from './AnswerCard'
 import shortid from 'shortid'
-
+shortid.characters('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ$@')
 export default class Player {
     private _id: string;
     private _name: string;
@@ -13,10 +13,10 @@ export default class Player {
         this._name = name;
     }
 
-    static getInstance(name: string, isHost: boolean) {
-        let host = new Player(name);
-        host._isHost = isHost;
-        return host;
+    static createHost(name: string) {
+        let player = new Player(name);
+        player.host = true
+        return player;
     }
 
     public get id(): string {
@@ -42,6 +42,12 @@ export default class Player {
     }
     public set score(value: number) {
         this._score = value;
+    }
+    public get host(): boolean {
+        return this._isHost
+    }
+    public set host(isHost: boolean) {
+        this._isHost = isHost
     }
 
 

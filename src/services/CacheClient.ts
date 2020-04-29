@@ -9,7 +9,7 @@ export function initCache(url: string) {
     })
 }
 
-export function getCacheClient() {
+export function getClient() {
     if (!client) {
         throw new ReferenceError("Cache not yet initialized")
     }

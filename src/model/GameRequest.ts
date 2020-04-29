@@ -2,19 +2,19 @@ import Player from './Player'
 
 export class GameRequest {
     private _gameSettings: GameSettings
-    private _host: Player;
+    private _hostName: string;
 
-    constructor(gameSettings: GameSettings, host: Player) {
+    constructor(gameSettings: GameSettings, hostName: string) {
         this._gameSettings = gameSettings;
-        this._host = host
+        this._hostName = hostName
     }
 
     get gameSettings() {
         return this._gameSettings
     }
 
-    get getHost() {
-        return this._host
+    get hostName() {
+        return this._hostName
     }    
 }
 
@@ -33,7 +33,7 @@ export class GameSettings {
         return this._passcode
     }
 
-    includeNsfwCards() {
+    get includeNsfwCards() {
         return this._includeNsfwCards
     }
 

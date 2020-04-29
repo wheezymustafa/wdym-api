@@ -3,8 +3,7 @@ import { GameSettings } from './GameRequest';
 import ImageCard from './ImageCard';
 import AnswerCard from './AnswerCard';
 import shortid from 'shortid'
-import { settings } from 'cluster';
-
+shortid.characters('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ$@')
 export default class Game {
     private _id: string;
     private _players: Player[] = []
