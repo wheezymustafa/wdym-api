@@ -1,23 +1,25 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import React, {useState} from 'react';
-import axios from 'axios'
-import './App.css';
-import io from 'socket.io-client'
-import Start from './Components/Start/Start';
-import NewGameForm from './Components/NewGameForm/NewGameForm';
-const socket = io('http://localhost:3111')
-  
-socket.once('connect', () => {
-  console.log('connected')
-})
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Game from './Components/Game/Game';
+import Menu from './Components/Menu/Menu';
+// const socket = io('http://localhost:3111')
 
+// socket.once('connect', () => {
+//   console.log('connected')
+// })
 
 const App = () => {
-  const [state, setState] = useState([])
-
   return (
     <div className="App">
-      <Start />
+        <Router>
+          <Switch>
+            <Route path="/game/:id" component={Game}>
+            </Route>
+            <Route path="/" component={Menu}>
+            </Route>
+          </Switch>
+        </Router>
     </div>
   );
 }

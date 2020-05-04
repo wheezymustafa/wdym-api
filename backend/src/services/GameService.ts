@@ -22,7 +22,7 @@ export async function createGame(gameRequest: GameRequest) {
     cacheClient.getClient().set(id, JSON.stringify(newGame),"EX",60, (result) =>{
         logger.info(`cached ${id}`)
     })
-    return newGame
+    return {gameId: newGame.id}
 }
 
 export async function addPlayerToGame(id: string, name: string) {

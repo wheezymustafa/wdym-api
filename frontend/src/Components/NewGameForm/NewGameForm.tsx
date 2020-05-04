@@ -1,17 +1,22 @@
-import React, { FormEvent, useState, ChangeEvent } from 'react'
-import Form from 'react-bootstrap/Form'
-import { Row, Col, Button, Container } from 'react-bootstrap';
+import React, { ChangeEvent, FormEvent, useState } from 'react';
+import { Button, Col, Row } from 'react-bootstrap';
+import Form from 'react-bootstrap/Form';
 import SmallFormField from './SmallFormField';
 
 const NewGameForm = (props: NewGameFormProps) => {
-  const [formState, setFormState] = useState({})
+  const [formState, setFormState] = useState<FormState>({
+    maxScore: 1,
+    password: '',
+    hostUsername: '',
+    includeNsfwCards: false
+  })
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     props.onSubmit(formState);
   }
 
-  const handleChanged = ({target}: ChangeEvent<HTMLInputElement>) => {
+  const handleChanged = ({ target }: ChangeEvent<HTMLInputElement>) => {
     let value
     if (target.type === 'checkbox') {
       value = target.checked
@@ -70,6 +75,13 @@ const NewGameForm = (props: NewGameFormProps) => {
       </Form>
     </div>
   )
+}
+
+interface FormState {
+  maxScore: number
+  password: string
+  hostUsername: string
+  includeNsfwCards: boolean
 }
 
 export type NewGameFormProps = {

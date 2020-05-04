@@ -1,5 +1,5 @@
-import React, { Props } from 'react';
-import {Form,Col} from 'react-bootstrap'
+import React from 'react';
+import { Col, Form } from 'react-bootstrap';
 
 const SmallFormField = ({labelName, controlProps}:FieldProps ) => {
     return (
