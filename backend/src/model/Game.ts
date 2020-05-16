@@ -7,14 +7,18 @@ shortid.characters('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWX
 export default class Game {
     private _id: string;
     private _players: Player[] = []
-    private _settings: GameSettings;
+    settings: GameSettings;
     private _answerDeck: AnswerCard[] = []
     private _imageDeck: ImageCard[] = []
     constructor(gameSettings: GameSettings, answerDeck: AnswerCard[], imageDeck: ImageCard[]) {
         this._id = shortid.generate();
-        this._settings = gameSettings;
+        this.settings = gameSettings;
         this._answerDeck = answerDeck;
         this._imageDeck = imageDeck;
+    }
+
+    static getInstance() {
+        return new Game(GameSettings.getInstance(), [], [])
     }
 
     get id() {
@@ -34,9 +38,9 @@ export default class Game {
         return this._players;
     }
 
-    get gameSettings(): GameSettings {
-        return this._settings;
-    }
+    // get settings(): GameSettings {
+    //     return this._settings;
+    // }
 
     get answerDeck() {
         return this._answerDeck

@@ -8,21 +8,10 @@ import logger from '@shared/Logger';
 import {init as dbConnect} from './services/DbClient'
 import BaseRouter from './routes';
 import * as cacheClient from './services/CacheClient'
-import * as http from 'http'
-import socketIo = require('socket.io')
 import cors from 'cors'
 const app = express();
-
-let server = http.createServer(app)
-server.listen(3111, () => {
-    console.log("ok im listening on 3111")
-})
-
-let io = socketIo(server)
-io.on('connection', (socket) => {
-    console.log("someone connected! lol")
-})
-
+import initSocketListener from './services/SocketIoListener'
+initSocketListener(app)
 
 const dbUrl = 'mongodb://wdymadmin:C0starica@localhost:27017/?authSource=admin';
 const gameAssetsDbName = 'GameAssets';

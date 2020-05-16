@@ -13,25 +13,37 @@ export class GameRequest {
         return this._gameSettings
     }
 
-    get hostName() {
+    get hostUsername() {
         return this._hostUsername
-    }    
+    }
+
+    set gameSettings(settings: GameSettings) {
+        this._gameSettings = settings
+    }
+
+    set hostUsername(hostUsername: string) {
+        this._hostUsername = hostUsername
+    }
 }
 
 export class GameSettings {
-    private _password: string;
-    private _includeNsfwCards: boolean;
-    private _maxScore: number;
+    password: string
+    private _includeNsfwCards: boolean
+    private _maxScore: number = 1
 
     constructor(password: string, includeNsfwCards: boolean, maxScore: number) {
-        this._password = password;
+        this.password = password;
         this._includeNsfwCards = includeNsfwCards;
         this._maxScore = maxScore;
     }
 
-    get password() {
-        return this._password
+    static getInstance() {
+        return new GameSettings("", false, 1)
     }
+
+    // get password() {
+    //     return this.password
+    // }
 
     get includeNsfwCards() {
         return this._includeNsfwCards
@@ -39,5 +51,19 @@ export class GameSettings {
 
     get maxScore() {
         return this._maxScore
-    }    
+    }
+    
+    // set password(password: string) {
+    //     this._password = password
+    // }
+
+    set includeNsfwCards(includeNsfwCards: boolean) {
+        this._includeNsfwCards = includeNsfwCards
+    }
+
+    set maxScore(maxScore: number) {
+        if (maxScore < 1) {
+            throw new Error('Max score must be greater than 0.')
+        }
+    }
 }

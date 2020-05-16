@@ -1,7 +1,7 @@
 import React, { ChangeEvent, FormEvent, useState } from 'react';
 import { Button, Col, Row } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
-import SmallFormField from './SmallFormField';
+import SmallFormField from '../Form/SmallFormField';
 
 const NewGameForm = (props: NewGameFormProps) => {
   const [formState, setFormState] = useState<FormState>({
